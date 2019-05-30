@@ -49,7 +49,7 @@ class ContactClient extends Client
         $xmlResponse = $response->SearchContactsResult->any ?? null;
 
         if (is_string($xmlResponse)) {
-            return iterator_to_array((new \SimpleXMLElement($xmlResponse)), false);
+            return iterator_to_array((new SimpleXMLElement($xmlResponse)), false);
         }
 
         UnexpectedTypeException::fromValue($xmlResponse, 'string');

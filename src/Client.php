@@ -29,6 +29,8 @@ abstract class Client
         'exceptions' => true
     ];
 
+    protected const SESSION_ID_ARG = 'sessionID';
+
     /**
      * @var string
      */
@@ -102,7 +104,7 @@ abstract class Client
             $this->authenticate();
         }
 
-        $arguments += ['sessionID' => $this->sessionId];
+        $arguments += [static::SESSION_ID_ARG => $this->sessionId];
 
         try {
             return $this->soapClient()->__soapCall($functionName, [$arguments], $options, $inputHeaders, $outputHeaders);
