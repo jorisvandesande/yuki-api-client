@@ -24,7 +24,7 @@ class AdministrationsClient extends Client
     }
 
 
-    public function Administrations(
+    public function administrations(
     ): SimpleXMLElement {
         $response = $this->call('Administrations', []);
 
