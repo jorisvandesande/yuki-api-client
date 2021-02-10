@@ -53,7 +53,7 @@ class ArchiveClient extends Client
             return iterator_to_array((new SimpleXMLElement($xmlResponse)), false);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 
     /**
@@ -92,28 +92,28 @@ class ArchiveClient extends Client
             return iterator_to_array((new SimpleXMLElement($xmlResponse)), false);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 
     /**
      * @param string $documentID
-     * @return SimpleXMLElement
+     * @return string the file contents
      *
      * @link https://support.yuki.nl/nl/support/solutions/articles/11000062998-archive-webservice
      * @Link https://api.yukiworks.nl/ws/archive.asmx?op=DocumentBinaryData
      */
-    public function documentBinaryData(string $documentID): SimpleXMLElement
+    public function documentBinaryData(string $documentID): string
     {
         $arguments = compact('documentID');
 
         $response = $this->call('DocumentBinaryData', $arguments);
 
-        $xmlResponse = $response->DocumentBinaryDataResult->any ?? null;
+        $data = $response->DocumentBinaryDataResult ?? null;
 
-        if (is_string($xmlResponse)) {
-            return new SimpleXMLElement($xmlResponse);
+        if (is_string($data)) {
+            return $data;
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($data, 'string');
     }
 }
