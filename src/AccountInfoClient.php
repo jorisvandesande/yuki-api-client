@@ -42,4 +42,36 @@ class AccountInfoClient extends Client
 
         UnexpectedTypeException::fromValue($arrayResponse, 'array');
     }
+
+    public function getGLAccountScheme (
+        $administrationID
+    ): array {
+        $arguments = compact("administrationID");
+
+        $response = $this->call('GetGLAccountScheme', $arguments);
+        $arrayResponse = $response->GetGLAccountSchemeResult->GlAccount ?? null;
+
+        if (is_array($arrayResponse)) {
+            return $arrayResponse;
+        }
+
+        UnexpectedTypeException::fromValue($arrayResponse, 'array');
+    }
+
+    public function getStartBalanceByGLAccount(
+        $administrationID,
+        $bookyear = "2020",
+        $financialMode = 1
+    ):array {
+        $arguments = compact("administrationID", "bookyear", "financialMode");
+
+        $response = $this->call('GetStartBalanceByGLAccount', $arguments);
+        $arrayResponse = $response->GetStartBalanceByGlAccountResult->AccountStartBalance ?? null;
+
+        if (is_array($arrayResponse)) {
+            return $arrayResponse;
+        }
+
+        UnexpectedTypeException::fromValue($arrayResponse, 'array');
+    }
 }
