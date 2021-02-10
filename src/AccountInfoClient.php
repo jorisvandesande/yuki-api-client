@@ -25,11 +25,11 @@ class AccountInfoClient extends Client
 
 
     public function getTransactionDetails(
-        $administrationID,
-        $GLAccountCode = "",
-        $StartDate = '2020-01-01',
-        $EndDate = '2021-01-01',
-        $financialMode = 1
+        string $administrationID,
+        string $GLAccountCode = "",
+        string $StartDate = '2020-01-01',
+        string $EndDate = '2021-01-01',
+        int $financialMode = 1
     ):array {
         $arguments = compact("administrationID", "GLAccountCode", "StartDate", "EndDate", "financialMode");
 
@@ -41,6 +41,22 @@ class AccountInfoClient extends Client
         }
 
         UnexpectedTypeException::fromValue($arrayResponse, 'array');
+    }
+
+    public function getTransactionDocument (
+        string $administrationID,
+        string $transactionID
+    ):object {
+        $arguments = compact("administrationID", "transactionID");
+
+        $response = $this->call('GetTransactionDocument', $arguments);
+        $documentObject = $response->GetTransactionDocumentResult ?? null;
+
+        if (is_object($documentObject)) {
+            return $documentObject;
+        }
+
+        UnexpectedTypeException::fromValue($documentObject, 'object');
     }
 
     public function getGLAccountScheme (
@@ -59,9 +75,9 @@ class AccountInfoClient extends Client
     }
 
     public function getStartBalanceByGLAccount(
-        $administrationID,
-        $bookyear = "2020",
-        $financialMode = 1
+        string $administrationID,
+        string $bookyear = "2020",
+        int $financialMode = 1
     ):array {
         $arguments = compact("administrationID", "bookyear", "financialMode");
 
@@ -74,4 +90,5 @@ class AccountInfoClient extends Client
 
         UnexpectedTypeException::fromValue($arrayResponse, 'array');
     }
+
 }
