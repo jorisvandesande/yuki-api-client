@@ -52,6 +52,6 @@ class ContactClient extends Client
             return iterator_to_array((new SimpleXMLElement($xmlResponse)), false);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 }

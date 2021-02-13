@@ -53,7 +53,7 @@ class ArchiveClient extends Client
             return iterator_to_array((new SimpleXMLElement($xmlResponse)), false);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 
     /**
@@ -82,7 +82,7 @@ class ArchiveClient extends Client
         string $startDate = '0001-01-01',
         string $endDate = '0001-01-01'
     ): array {
-        $arguments = compact('searchText', 'ssearchOption', 'folderID', 'startRecord', 'numberOfRecords', 'sortOrder', 'startDate', 'endDate');
+        $arguments = compact('searchText', 'searchOption', 'folderID', 'startRecord', 'numberOfRecords', 'sortOrder', 'startDate', 'endDate');
 
         $response = $this->call('SearchDocuments', $arguments);
 
@@ -92,7 +92,7 @@ class ArchiveClient extends Client
             return iterator_to_array((new SimpleXMLElement($xmlResponse)), false);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 
     /**
@@ -114,6 +114,6 @@ class ArchiveClient extends Client
             return new SimpleXMLElement($xmlResponse);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 }

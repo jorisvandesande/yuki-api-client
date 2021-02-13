@@ -47,6 +47,6 @@ class SalesClient extends Client
             return new SimpleXMLElement($xmlResponse);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 }

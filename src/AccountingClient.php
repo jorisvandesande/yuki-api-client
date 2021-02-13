@@ -12,8 +12,6 @@ class AccountingClient extends Client
 {
     private const WSDL = 'https://api.yukiworks.nl/ws/Accounting.asmx?wsdl';
 
-    protected const SESSION_ID_ARG = 'sessionID';
-
     public function __construct(
         string $accessKey,
         array $soapClientOptions = [],
@@ -39,6 +37,6 @@ class AccountingClient extends Client
             return new SimpleXMLElement($xmlResponse);
         }
 
-        UnexpectedTypeException::fromValue($xmlResponse, 'string');
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
     }
 }

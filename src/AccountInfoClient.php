@@ -12,8 +12,6 @@ class AccountInfoClient extends Client
 {
     private const WSDL = 'https://api.yukiworks.nl/ws/AccountingInfo.asmx?wsdl';
 
-    protected const SESSION_ID_ARG = 'sessionID';
-
     public function __construct(
         string $accessKey,
         array $soapClientOptions = [],
@@ -26,8 +24,8 @@ class AccountInfoClient extends Client
 
     public function getTransactionDetails(
         string $administrationID,
-        string $GLAccountCode = "",
-        string $StartDate = '2020-01-01',
+        string $GLAccountCode = '',
+        string $StartDate = '0001-01-01',
         string $EndDate = '2021-01-01',
         int $financialMode = 1
     ):array {
@@ -40,7 +38,7 @@ class AccountInfoClient extends Client
             return $arrayResponse;
         }
 
-        UnexpectedTypeException::fromValue($arrayResponse, 'array');
+        throw UnexpectedTypeException::fromValue($arrayResponse, 'array');
     }
 
     public function getTransactionDocument (
@@ -56,7 +54,7 @@ class AccountInfoClient extends Client
             return $documentObject;
         }
 
-        UnexpectedTypeException::fromValue($documentObject, 'object');
+        throw UnexpectedTypeException::fromValue($documentObject, 'object');
     }
 
     public function getGLAccountScheme (
@@ -71,7 +69,7 @@ class AccountInfoClient extends Client
             return $arrayResponse;
         }
 
-        UnexpectedTypeException::fromValue($arrayResponse, 'array');
+        throw UnexpectedTypeException::fromValue($arrayResponse, 'array');
     }
 
     public function getStartBalanceByGLAccount(
@@ -88,7 +86,7 @@ class AccountInfoClient extends Client
             return $arrayResponse;
         }
 
-        UnexpectedTypeException::fromValue($arrayResponse, 'array');
+        throw UnexpectedTypeException::fromValue($arrayResponse, 'array');
     }
 
 }
