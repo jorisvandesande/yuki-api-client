@@ -27,7 +27,7 @@ class AccountingClient extends Client
         $GLAccountCode = "",
         $StartDate = '2020-01-01',
         $EndDate = '2021-01-01'
-    ):SimpleXMLElement {
+    ): SimpleXMLElement {
         $arguments = compact("administrationID", "GLAccountCode", "StartDate", "EndDate");
 
         $response = $this->call('GLAccountTransactionsFiscal', $arguments);

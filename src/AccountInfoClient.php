@@ -28,7 +28,7 @@ class AccountInfoClient extends Client
         string $StartDate = '0001-01-01',
         string $EndDate = '2021-01-01',
         int $financialMode = 1
-    ):array {
+    ): array {
         $arguments = compact("administrationID", "GLAccountCode", "StartDate", "EndDate", "financialMode");
 
         $response = $this->call('GetTransactionDetails', $arguments);
@@ -44,7 +44,7 @@ class AccountInfoClient extends Client
     public function getTransactionDocument (
         string $administrationID,
         string $transactionID
-    ):object {
+    ): object {
         $arguments = compact("administrationID", "transactionID");
 
         $response = $this->call('GetTransactionDocument', $arguments);
@@ -76,7 +76,7 @@ class AccountInfoClient extends Client
         string $administrationID,
         string $bookyear = "2020",
         int $financialMode = 1
-    ):array {
+    ): array {
         $arguments = compact("administrationID", "bookyear", "financialMode");
 
         $response = $this->call('GetStartBalanceByGLAccount', $arguments);
