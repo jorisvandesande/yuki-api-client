@@ -7,6 +7,13 @@ An API client for the Yuki SOAP API endpoints.
 
 At the moment only a couple of API calls are implemented:
 
+* AccountingInfo
+  * GetTransactionDetails
+  * GetTransactionDocument
+  * GetGLAccountScheme
+  * GetStartBalanceByGLAccount
+* Administrations
+  * Administrations
 * Archive
   * DocumentBinaryData()
   * DocumentsInFolder()

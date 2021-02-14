@@ -82,7 +82,7 @@ class ArchiveClient extends Client
         string $startDate = '0001-01-01',
         string $endDate = '0001-01-01'
     ): array {
-        $arguments = compact('searchText', 'ssearchOption', 'folderID', 'startRecord', 'numberOfRecords', 'sortOrder', 'startDate', 'endDate');
+        $arguments = compact('searchText', 'searchOption', 'folderID', 'startRecord', 'numberOfRecords', 'sortOrder', 'startDate', 'endDate');
 
         $response = $this->call('SearchDocuments', $arguments);
 
