@@ -32,6 +32,8 @@ class ContactClient extends Client
      * @return SimpleXMLElement[]
      * @throws Exception
      * @throws UnexpectedTypeException
+     *
+     * @link https://api.yukiworks.nl/ws/Contact.asmx?op=SearchContacts
      */
     public function searchContacts(
         int $pageNumber = 1,
@@ -50,6 +52,33 @@ class ContactClient extends Client
 
         if (is_string($xmlResponse)) {
             return iterator_to_array((new SimpleXMLElement($xmlResponse)), false);
+        }
+
+        throw UnexpectedTypeException::fromValue($xmlResponse, 'string');
+    }
+
+    /**
+     * @param string $xmlDoc
+     * @param string $domainID
+     * @return SimpleXMLElement
+     *
+     * @link https://www.yukiworks.nl/schemas/Contact.xsd
+     * @link https://api.yukiworks.nl/ws/Contact.asmx?op=UpdateContact
+     */
+    public function updateContact(
+        string $xmlDoc,
+        string $domainID = null
+    ): SimpleXMLElement
+    {
+        $arguments = compact('domainID');
+        $arguments['xmlDoc'] = ['any' => $xmlDoc];
+
+        $response = $this->call('UpdateContact', $arguments);
+
+        $xmlResponse = $response->UpdateContactResult->any ?? null;
+
+        if (is_string($xmlResponse)) {
+            return new SimpleXMLElement($xmlResponse);
         }
 
         throw UnexpectedTypeException::fromValue($xmlResponse, 'string');

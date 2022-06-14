@@ -30,7 +30,9 @@ class SalesClient extends Client
      * @throws Exception
      * @throws UnexpectedTypeException
      *
-     * @link http://help.yuki.nl/documents/homepage/startpagina-yuki-api-documentatie/sales-webservice/sales---functionele-beschrijving-verkoopfacturen-xml
+     * @link https://support.yuki.nl/nl/support/solutions/articles/80000787298-sales-functionele-beschrijving-velden-verkoopfacturen-xml
+     * @link https://www.yukiworks.nl/schemas/SalesInvoices.xsd
+     * @link https://api.yukiworks.nl/ws/Sales.asmx?op=ProcessSalesInvoices
      */
     public function processSalesInvoices(
         string $administrationId,
